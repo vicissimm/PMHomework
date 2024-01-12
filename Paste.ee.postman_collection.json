@@ -13,9 +13,9 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"let randomData = Date.now()\r",
-							"\r",
-							"pm.environment.set(\"ranData\", randomData)"
+							"const uuid = require(\"uuid\");\r",
+							"const id = uuid.v4();\r",
+							"pm.environment.set(\"ranData\", id)"
 						],
 						"type": "text/javascript"
 					}
@@ -38,16 +38,22 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "unS74rgcL7zeI7iSUFXeLQLeAPHsHSHMsKgWvBgyK",
+							"value": "",
 							"type": "string"
 						}
 					]
 				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "unS74rgcL7zeI7iSUFXeLQLeAPHsHSHMsKgWvBgyK",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"encrypted\": false,\r\n    \"description\": \"test\",\r\n    \"sections\": [\r\n        {\r\n            \"name\": \"Section1\",\r\n            \"syntax\": \"autodetect\",\r\n            \"contents\": {{ranData}}\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"encrypted\": false,\r\n    \"description\": \"test\",\r\n    \"sections\": [\r\n        {\r\n            \"name\": \"Section1\",\r\n            \"syntax\": \"autodetect\",\r\n            \"contents\": \"{{ranData}}\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -67,17 +73,16 @@
 			"name": "Get a paste",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "unS74rgcL7zeI7iSUFXeLQLeAPHsHSHMsKgWvBgyK",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "unS74rgcL7zeI7iSUFXeLQLeAPHsHSHMsKgWvBgyK",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{baseURL}}/{{respId}}",
 					"host": [
@@ -94,17 +99,16 @@
 			"name": "Delete a paste",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "unS74rgcL7zeI7iSUFXeLQLeAPHsHSHMsKgWvBgyK",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "unS74rgcL7zeI7iSUFXeLQLeAPHsHSHMsKgWvBgyK",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{baseURL}}/{{respId}}",
 					"host": [
